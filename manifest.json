@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "MEGA",
+    "description": "Secure Cloud Storage and Chat",
+    "version": "3.16.1b4",
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://*.mega.co.nz https://*.mega.nz blob:; object-src 'self' https://*.mega.co.nz https://*.mega.nz;",
+    "permissions": ["webRequest", "webRequestBlocking", "https://mega.co.nz/", "https://mega.nz/", "unlimitedStorage", "clipboardWrite"],
+    "web_accessible_resources": ["mega/secure.html"],
+    "homepage_url": "https://mega.nz/",
+    "background": {
+        "scripts": ["mega.js"]
+    },
+    "icons": {
+        "16": "images/icon_16.png",
+        "48": "images/icon_48.png",
+        "128": "images/icon_128.png"
+    },
+    "applications": {
+        "gecko": {
+            "id": "firefox@mega.co.nz",
+            "strict_min_version": "56.0"
+        }
+    }
+}
