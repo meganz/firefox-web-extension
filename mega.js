@@ -1,3 +1,15 @@
+// Add a listener for clicks on the Mega toolbar icon
+browser.browserAction.onClicked.addListener(openMyPage);
+
+/**
+ * Open a new tab and load the Mega homepage in it
+ */
+function openMyPage() {
+    browser.tabs.create({
+        url: '/mega/secure.html'
+    });
+}
+
 chrome.webRequest.onBeforeRequest.addListener(function(details) {
         if ((details.url.substr(-4) === '.xml')
             || (details.url.substr(-4) === '.crx')
