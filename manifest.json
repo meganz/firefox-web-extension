@@ -9,6 +9,7 @@
         "unlimitedStorage",
         "https://mega.co.nz/",
         "https://mega.nz/",
+        "wss://mega.nz/",
         "webRequest",
         "webRequestBlocking"
     ],
@@ -33,7 +34,7 @@
     "applications": {
         "gecko": {
             "id": "firefox@mega.co.nz",
-            "strict_min_version": "56.0",
+            "strict_min_version": "52.0",
             "update_url": "https://eu.static.mega.co.nz/3/firefox-web-extension-updates.json"
         }
     }
