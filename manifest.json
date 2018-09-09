@@ -3,7 +3,7 @@
     "name": "MEGA",
     "description": "Secure Cloud Storage and Chat",
     "version": "1.0.0",
-    "content_security_policy": "script-src 'self' 'unsafe-eval' https://*.mega.co.nz https://*.mega.nz blob:; object-src 'self' https://*.mega.co.nz https://*.mega.nz;",
+    "content_security_policy": "script-src 'self' https://*.mega.co.nz https://*.mega.nz blob:; object-src 'self' https://*.mega.co.nz https://*.mega.nz;",
     "permissions": [
         "clipboardWrite",
         "unlimitedStorage",
