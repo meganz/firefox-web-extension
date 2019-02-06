@@ -37,8 +37,11 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
                 if (details.url.indexOf('https://mega.nz/embed') > -1) {
                     hash = '#E' + hash.substr(1);
                 }
-                if (details.url.indexOf('https://mega.nz/drop') > -1) {
+                else if (details.url.indexOf('https://mega.nz/drop') > -1) {
                     hash = '#D' + hash.substr(1);
+                }
+                else if (details.url.indexOf('https://mega.nz/c/') > -1) {
+                    hash = '#' + details.url.split(".nz/")[1];
                 }
             }
             else if (details.url.indexOf('https://mega.nz/') > -1 && details.url.length > 16) {
