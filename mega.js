@@ -40,7 +40,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
                 else if (details.url.indexOf('https://mega.nz/drop') > -1) {
                     hash = '#D' + hash.substr(1);
                 }
-                else if (details.url.indexOf('https://mega.nz/c/') > -1) {
+                else if (details.url.indexOf('https://mega.nz/chat/') > -1) {
                     hash = '#' + details.url.split(".nz/")[1];
                 }
             }
