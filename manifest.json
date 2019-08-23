@@ -35,7 +35,7 @@
         "gecko": {
             "id": "firefox@mega.co.nz",
             "strict_min_version": "52.0",
-            "update_url": "https://eu.static.mega.co.nz/3/firefox-web-extension-updates.json"
+            "update_url": "https://mega.nz/firefox-web-extension-updates.json"
         }
     }
 }
