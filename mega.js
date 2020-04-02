@@ -31,31 +31,36 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
         }
         else {
             var hash = '';
+            if (details.url.indexOf('://mega.nz/') > 0) {
+                var url = details.url;
+                var path = url.split('.nz/')[1];
 
-            if (details.url.indexOf('#') > -1) {
-                hash = '#' + details.url.split('#')[1];
-                if (details.url.indexOf('https://mega.nz/embed') > -1) {
-                    hash = '#E' + hash.substr(1);
+                if (url.indexOf('#') > -1) {
+                    var nlfe = url.match(/\/\/mega\.nz\/(file|folder|embed|drop)[!#/]+([\w-]{8,11})(?:[#!](.*))?/);
+
+                    if (nlfe) {
+                        var type = nlfe[1];
+                        var node = nlfe[2];
+                        var pkey = nlfe[3];
+                        var lpfx = ({embed: 'E', folder: 'F', drop: 'D'})[type] || '';
+
+                        if (pkey && type === 'folder') {
+                            pkey = pkey.replace('/folder/', '!').replace('/file/', '?');
+                        }
+                        hash = '#' + lpfx + '!' + node + (pkey ? '!' + pkey : '');
+                    }
+                    else if (url.indexOf('://mega.nz/chat/') > -1) {
+                        hash = '#' + path;
+                    }
+                    else {
+                        hash = '#' + url.split('#')[1];
+                    }
                 }
-                else if (details.url.indexOf('https://mega.nz/drop') > -1) {
-                    hash = '#D' + hash.substr(1);
-                }
-                else if (details.url.indexOf('https://mega.nz/chat/') > -1) {
-                    hash = '#' + details.url.split(".nz/")[1];
-                }
-                else if (details.url.indexOf('/folder/') > -1) {
-                    hash = '#/' + details.url.split(".nz/")[1];
-                }
-                else if (details.url.indexOf('/file/') > -1) {
-                    hash = '#/' + details.url.split(".nz/")[1];
+                else if (path) {
+                    hash = '#' + path;
                 }
             }
-            else if (details.url.indexOf('https://mega.nz/') > -1 && details.url.length > 16) {
-                hash = '#' + details.url.split('https://mega.nz/')[1];
-            }
-            return {
-                redirectUrl: chrome.extension.getURL('mega/secure.html' + hash)
-            };
+            return { redirectUrl:  chrome.extension.getURL("mega/secure.html" + hash) };
         }
     },
     {
@@ -75,7 +80,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
 );
 
 chrome.webRequest.onHeadersReceived.addListener(function(details) {
-        console.log('responseHeaders', responseHeaders);
+        // console.log('responseHeaders',responseHeaders);
     },
     {
         urls: [
