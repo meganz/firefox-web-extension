@@ -42,11 +42,8 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
                         var type = nlfe[1];
                         var node = nlfe[2];
                         var pkey = nlfe[3];
-                        var lpfx = ({embed: 'E', folder: 'F', drop: 'D'})[type] || '';
+                        var lpfx = ({embed: 'E', drop: 'D'})[type] || '';
 
-                        if (pkey && type === 'folder') {
-                            pkey = pkey.replace('/folder/', '!').replace('/file/', '?');
-                        }
                         hash = '#' + lpfx + '!' + node + (pkey ? '!' + pkey : '');
                     }
                     else if (url.indexOf('://mega.nz/chat/') > -1) {
